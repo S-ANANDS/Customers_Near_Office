@@ -32,39 +32,36 @@ class Customer
     @id = user_id
   end  
 end
-binding.pry
-# def files(f_name)
-#   file=File.open(f_name)
-#   file.readlines
-# end
+def files(f_name)
+  file=File.open(f_name)
+  file.readlines
+end
 
-# def parser(lines)
-#   lines.map do |x| 
-#     JSON.parse(x)
-#   end
-# end
-# def filter_data(process_data)
-#   process_data.select do |customer|
-#     office=Location.new(latitude: 53.3381985, longitude: -6.2592576)
-#     l=Location.new(latitude: customer['latitude'].to_f, longitude: customer['longitude'].to_f)
-#     office.distance_to(l) >= 100
-#   end
-# end
-# def sorts(value)
-#   value.sort_by! { |x| x["user_id"] }
-# end
+def parser(lines)
+  lines.map do |x| 
+    JSON.parse(x)
+  end
+end
+def filter_data(process_data)
+  process_data.select do |customer|
+    office=Location.new(latitude: 53.3381985, longitude: -6.2592576)
+    l=Location.new(latitude: customer['latitude'].to_f, longitude: customer['longitude'].to_f)
+    office.distance_to(l) >= 100
+  end
+end
+def sorts(value)
+  value.sort_by! { |x| x["user_id"] }
+end
 
 
-# lines=files('customers.json')
-# process_data = parser(lines)
-# value=filter_data(process_data)
-# values = sorts(value)
-# # binding.pry
-# # values.each do |x|
-# #   puts " #{x["user_id"]} , #{x["name"]} "
-# # end
+lines=files('customers.json')
+process_data = parser(lines)
+value=filter_data(process_data)
+values = sorts(value)
+values.each do |x|
+  puts " #{x["user_id"]} , #{x["name"]} "
+end
 #  process_data.each do |x|
 #    person = Customer.new(x['latitude'], x['user_id'], x['name'],x['longitude'])
-#   #  binding.pry
 #    puts person.name
 #  end
